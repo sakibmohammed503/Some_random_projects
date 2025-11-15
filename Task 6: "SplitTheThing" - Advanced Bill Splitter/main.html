@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitTheThing - Advanced Bill Splitter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-receipt"></i>
+                <h1>SplitTheThing</h1>
+            </div>
+            <p class="tagline">Split bills fairly, not just equally</p>
+        </header>
+
+        <main class="app-container">
+            <div class="setup-panel">
+                <h2>Bill Details</h2>
+                <div class="input-group">
+                    <label for="total-bill">Total Bill Amount</label>
+                    <div class="input-with-icon">
+                        <span class="currency">$</span>
+                        <input type="number" id="total-bill" placeholder="0.00" min="0" step="0.01">
+                    </div>
+                </div>
+                
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="tax-percent">Tax (%)</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="tax-percent" placeholder="0" min="0" step="0.1" value="8.5">
+                            <span class="percent">%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="tip-percent">Tip (%)</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="tip-percent" placeholder="0" min="0" step="0.1" value="15">
+                            <span class="percent">%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="people-count">Number of People</label>
+                    <div class="counter">
+                        <button id="decrease-people" class="counter-btn">-</button>
+                        <span id="people-count">4</span>
+                        <button id="increase-people" class="counter-btn">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="people-panel">
+                <h2>People & Items</h2>
+                <div class="people-container" id="people-container">
+                    <!-- People will be dynamically added here -->
+                </div>
+                <button id="add-person" class="btn-secondary">
+                    <i class="fas fa-plus"></i> Add Person
+                </button>
+            </div>
+
+            <div class="items-panel">
+                <h2>Items on Bill</h2>
+                <div class="items-container" id="items-container">
+                    <!-- Items will be dynamically added here -->
+                </div>
+                <button id="add-item" class="btn-secondary">
+                    <i class="fas fa-plus"></i> Add Item
+                </button>
+            </div>
+
+            <div class="actions-panel">
+                <button id="calculate-btn" class="btn-primary">
+                    <i class="fas fa-calculator"></i> Calculate Split
+                </button>
+                <button id="reset-btn" class="btn-outline">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <div class="results-panel hidden" id="results-panel">
+                <h2>Split Summary</h2>
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <div class="summary-label">Subtotal</div>
+                        <div class="summary-value" id="subtotal-amount">$0.00</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Tax</div>
+                        <div class="summary-value" id="tax-amount">$0.00</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Tip</div>
+                        <div class="summary-value" id="tip-amount">$0.00</div>
+                    </div>
+                    <div class="summary-card total">
+                        <div class="summary-label">Total</div>
+                        <div class="summary-value" id="total-amount">$0.00</div>
+                    </div>
+                </div>
+
+                <div class="split-results">
+                    <h3>Individual Shares</h3>
+                    <div class="person-shares" id="person-shares">
+                        <!-- Person shares will be dynamically added here -->
+                    </div>
+                </div>
+
+                <div class="share-panel">
+                    <h3>Share Results</h3>
+                    <p>Send payment requests to your friends</p>
+                    <div class="share-buttons">
+                        <button id="whatsapp-share" class="btn-share whatsapp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button id="email-share" class="btn-share email">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                        <button id="copy-link" class="btn-share link">
+                            <i class="fas fa-link"></i> Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>SplitTheThing &copy; 2023 | Making bill splitting fair and easy</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
