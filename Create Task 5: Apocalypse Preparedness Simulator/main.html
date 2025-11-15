@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apocalypse Preparedness Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">⚠️</div>
+                <h1>APOCALYPSE PREPAREDNESS SIMULATOR</h1>
+            </div>
+            <p class="tagline">Test your survival skills against catastrophic scenarios</p>
+        </header>
+
+        <main class="simulator-container">
+            <div class="scenario-selector">
+                <h2>CHOOSE YOUR APOCALYPSE</h2>
+                <div class="scenario-cards">
+                    <div class="scenario-card" data-scenario="zombie">
+                        <div class="scenario-icon">🧟</div>
+                        <h3>ZOMBIE OUTBREAK</h3>
+                        <p>Containment failed. The infected roam freely.</p>
+                        <div class="difficulty">DIFFICULTY: MEDIUM</div>
+                    </div>
+                    <div class="scenario-card" data-scenario="solar">
+                        <div class="scenario-icon">☀️</div>
+                        <h3>SOLAR FLARE</h3>
+                        <p>EMP blast has disabled all electronics worldwide.</p>
+                        <div class="difficulty">DIFFICULTY: HARD</div>
+                    </div>
+                    <div class="scenario-card" data-scenario="pandemic">
+                        <div class="scenario-icon">🦠</div>
+                        <h3>PANDEMIC 2.0</h3>
+                        <p>Airborne pathogen with 60% mortality rate.</p>
+                        <div class="difficulty">DIFFICULTY: MEDIUM</div>
+                    </div>
+                    <div class="scenario-card" data-scenario="ai">
+                        <div class="scenario-icon">🤖</div>
+                        <h3>AI UPRISING</h3>
+                        <p>Machines have become self-aware and hostile.</p>
+                        <div class="difficulty">DIFFICULTY: VERY HARD</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-interface hidden">
+                <div class="game-header">
+                    <div class="scenario-info">
+                        <h2 id="current-scenario">ZOMBIE OUTBREAK</h2>
+                        <div class="survival-stats">
+                            <div class="stat">
+                                <div class="stat-label">HEALTH</div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" id="health-bar" style="width: 100%"></div>
+                                </div>
+                                <div class="stat-value" id="health-value">100%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">RESOURCES</div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" id="resources-bar" style="width: 100%"></div>
+                                </div>
+                                <div class="stat-value" id="resources-value">100%</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">SECURITY</div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" id="security-bar" style="width: 100%"></div>
+                                </div>
+                                <div class="stat-value" id="security-value">100%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="day-counter">
+                        <div class="day-label">DAY</div>
+                        <div class="day-number" id="day-number">1</div>
+                    </div>
+                </div>
+
+                <div class="game-content">
+                    <div class="situation-panel">
+                        <div class="situation-title" id="situation-title">OUTBREAK DETECTED</div>
+                        <div class="situation-description" id="situation-description">
+                            Emergency broadcasts confirm the zombie virus has spread to your city. The streets are filled with the infected. You're safe for now in your apartment, but supplies are limited.
+                        </div>
+                        <div class="survival-tip" id="survival-tip">
+                            TIP: Secure your location before gathering supplies. Noise attracts the infected.
+                        </div>
+                    </div>
+
+                    <div class="choices-panel">
+                        <h3>WHAT DO YOU DO?</h3>
+                        <div class="choices-container" id="choices-container">
+                            <!-- Choices will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <button id="restart-button" class="control-button">RESTART SIMULATION</button>
+                    <button id="scenario-button" class="control-button">CHOOSE DIFFERENT SCENARIO</button>
+                </div>
+            </div>
+
+            <div class="results-screen hidden">
+                <div class="results-content">
+                    <h2 id="results-title">SIMULATION COMPLETE</h2>
+                    <div class="results-stats">
+                        <div class="result-stat">
+                            <div class="result-label">DAYS SURVIVED</div>
+                            <div class="result-value" id="days-survived">0</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-label">FINAL HEALTH</div>
+                            <div class="result-value" id="final-health">0%</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-label">FINAL RESOURCES</div>
+                            <div class="result-value" id="final-resources">0%</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-label">FINAL SECURITY</div>
+                            <div class="result-value" id="final-security">0%</div>
+                        </div>
+                    </div>
+                    <div class="results-message" id="results-message">
+                        Your survival strategy needs improvement. Consider focusing on resource management and security.
+                    </div>
+                    <div class="results-controls">
+                        <button id="play-again-button" class="control-button primary">PLAY AGAIN</button>
+                        <button id="different-scenario-button" class="control-button">DIFFERENT SCENARIO</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Apocalypse Preparedness Simulator &copy; 2023 | Educational purposes only</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

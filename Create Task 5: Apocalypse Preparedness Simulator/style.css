@@ -1,0 +1,494 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #00ff9d;
+    --secondary: #00b8ff;
+    --accent: #ff2a6d;
+    --dark: #0d1b2a;
+    --darker: #050e1a;
+    --card-bg: rgba(13, 27, 42, 0.8);
+    --text: #e2f1ff;
+    --warning: #ff9d00;
+}
+
+body {
+    background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 255, 157, 0.3);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.logo-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: rgba(226, 241, 255, 0.7);
+    margin-top: 0.5rem;
+}
+
+.simulator-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.scenario-selector h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.8rem;
+}
+
+.scenario-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.scenario-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 184, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.scenario-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.scenario-card:hover::before {
+    left: 100%;
+}
+
+.scenario-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-color: var(--primary);
+}
+
+.scenario-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.scenario-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.scenario-card p {
+    margin-bottom: 1.5rem;
+    color: rgba(226, 241, 255, 0.8);
+}
+
+.difficulty {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background: rgba(255, 157, 0, 0.2);
+    color: var(--warning);
+    border: 1px solid var(--warning);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.game-interface {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 184, 255, 0.3);
+}
+
+.scenario-info h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.survival-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat {
+    min-width: 150px;
+}
+
+.stat-label {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.stat-bar {
+    height: 10px;
+    background: rgba(226, 241, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.stat-value {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-align: right;
+}
+
+.day-counter {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 1px solid var(--accent);
+}
+
+.day-label {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+}
+
+.day-number {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: var(--accent);
+}
+
+.game-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex: 1;
+    margin-bottom: 2rem;
+}
+
+.situation-panel {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 184, 255, 0.3);
+}
+
+.situation-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 255, 157, 0.3);
+}
+
+.situation-description {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.survival-tip {
+    padding: 1rem;
+    background: rgba(0, 255, 157, 0.1);
+    border-radius: 5px;
+    border-left: 4px solid var(--primary);
+    font-style: italic;
+}
+
+.choices-panel {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid rgba(0, 184, 255, 0.3);
+}
+
+.choices-panel h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+    font-size: 1.3rem;
+}
+
+.choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.choice-button {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 184, 255, 0.5);
+    color: var(--text);
+    padding: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    font-size: 1rem;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.choice-button:hover {
+    background: rgba(0, 184, 255, 0.2);
+    border-color: var(--secondary);
+    transform: translateX(5px);
+}
+
+.choice-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.choice-button:disabled:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 184, 255, 0.5);
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.control-button {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 42, 109, 0.5);
+    color: var(--text);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 500;
+}
+
+.control-button:hover {
+    background: rgba(255, 42, 109, 0.2);
+    border-color: var(--accent);
+}
+
+.control-button.primary {
+    background: rgba(0, 255, 157, 0.1);
+    border-color: var(--primary);
+}
+
+.control-button.primary:hover {
+    background: rgba(0, 255, 157, 0.2);
+}
+
+.results-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 14, 26, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.results-content {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 3rem;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+}
+
+.results-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.results-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.result-stat {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 184, 255, 0.3);
+}
+
+.result-label {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--secondary);
+    font-size: 0.9rem;
+}
+
+.result-value {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.results-message {
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    border-left: 4px solid var(--accent);
+}
+
+.results-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 255, 157, 0.3);
+    color: rgba(226, 241, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .game-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-header {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .survival-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .scenario-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-controls {
+        flex-direction: column;
+    }
+}
